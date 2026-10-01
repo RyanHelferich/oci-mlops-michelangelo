@@ -1,0 +1,2 @@
+# Optional local Docker TLS test only; not an installer dependency.
+cryptography==44.0.3

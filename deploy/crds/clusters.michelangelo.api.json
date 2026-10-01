@@ -1,0 +1,166 @@
+{
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "kind": "CustomResourceDefinition",
+  "metadata": {
+    "name": "clusters.michelangelo.api"
+  },
+  "spec": {
+    "conversion": {
+      "strategy": "None"
+    },
+    "group": "michelangelo.api",
+    "names": {
+      "kind": "Cluster",
+      "listKind": "ClusterList",
+      "plural": "clusters",
+      "singular": "cluster"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v2",
+        "schema": {
+          "openAPIV3Schema": {
+            "properties": {
+              "spec": {
+                "properties": {
+                  "dc": {
+                    "enum": [
+                      "DC_TYPE_INVALID",
+                      "DC_TYPE_ON_PREM",
+                      "DC_TYPE_CLOUD_GCP",
+                      "DC_TYPE_CLOUD_OCI"
+                    ],
+                    "type": "string"
+                  },
+                  "kubernetes": {
+                    "properties": {
+                      "rest": {
+                        "properties": {
+                          "caDataTag": {
+                            "type": "string"
+                          },
+                          "host": {
+                            "type": "string"
+                          },
+                          "port": {
+                            "type": "string"
+                          },
+                          "tokenTag": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "skus": {
+                        "items": {
+                          "properties": {
+                            "cpu": {
+                              "format": "int32",
+                              "type": "integer"
+                            },
+                            "diskSizeGb": {
+                              "type": "string"
+                            },
+                            "gpu": {
+                              "format": "int32",
+                              "type": "integer"
+                            },
+                            "gpuSku": {
+                              "type": "string"
+                            },
+                            "memoryGb": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "region": {
+                    "type": "string"
+                  },
+                  "sla": {
+                    "enum": [
+                      "SLA_TYPE_INVALID",
+                      "SLA_TYPE_PRODUCTION",
+                      "SLA_TYPE_EPHEMERAL"
+                    ],
+                    "type": "string"
+                  },
+                  "zone": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "status": {
+                "properties": {
+                  "statusConditions": {
+                    "items": {
+                      "properties": {
+                        "lastUpdatedTimestamp": {
+                          "format": "int64",
+                          "pattern": "^[-]?\\d{1,19}$",
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "properties": {
+                            "@type": {
+                              "description": "A URL/resource name that uniquely identifies the type of the serialized protocol buffer message.",
+                              "type": "string"
+                            },
+                            "value": {
+                              "description": "Serialized data of the above type.",
+                              "format": "byte",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "observedGeneration": {
+                          "format": "int64",
+                          "pattern": "^[-]?\\d{1,19}$",
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "enum": [
+                            "CONDITION_STATUS_UNKNOWN",
+                            "CONDITION_STATUS_TRUE",
+                            "CONDITION_STATUS_FALSE"
+                          ],
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "served": true,
+        "storage": true,
+        "subresources": {
+          "status": {}
+        }
+      }
+    ]
+  }
+}

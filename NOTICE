@@ -1,0 +1,8 @@
+OCI Michelangelo Deployment Wrapper
+
+This is an independent integration project. Oracle, OCI, Uber, and Michelangelo
+names and marks belong to their respective owners. This repository does not
+represent an official product endorsement or a production certification.
+
+Michelangelo AI is consumed as an external Apache-2.0-licensed dependency.
+Upstream source and its notices remain in the upstream repository.

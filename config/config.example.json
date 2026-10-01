@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "terraform": {
+    "tenancy_ocid": "ocid1.tenancy.oc1..REPLACE",
+    "compartment_ocid": "ocid1.compartment.oc1..REPLACE",
+    "region": "us-ashburn-1",
+    "config_file_profile": "DEFAULT",
+    "environment": "dev",
+    "project_name": "michelangelo",
+    "kubernetes_version": "v1.34.10",
+    "node_image_ocid": "ocid1.image.oc1.iad.REPLACE",
+    "node_shape": "VM.Standard.E4.Flex",
+    "node_count": 1,
+    "node_ocpus": 2,
+    "node_memory_gbs": 16,
+    "node_boot_volume_gbs": 50,
+    "availability_domains": [
+      "REPLACE:US-ASHBURN-AD-1"
+    ],
+    "vcn_cidr": "10.42.0.0/16",
+    "admin_cidrs": [
+      "10.0.0.0/8"
+    ],
+    "artifact_bucket_name": "michelangelo-artifacts",
+    "workload_namespace": "michelangelo",
+    "workload_service_accounts": [
+      "michelangelo"
+    ],
+    "enable_nat_gateway": true,
+    "enable_logging": false,
+    "enable_bastion": false,
+    "bastion_client_cidrs": [],
+    "database_mode": "mysql",
+    "mysql_admin_username": "michelangelo_admin",
+    "mysql_shape": "MySQL.2",
+    "mysql_storage_gbs": 100,
+    "mysql_high_availability": false,
+    "mysql_certificate_ocid": "ocid1.certificate.oc1.iad.REPLACE",
+    "mysql_certificate_compartment_ocid": null,
+    "mysql_hostname_label": "mysql",
+    "artifact_s3_group_ocid": null,
+    "artifact_allow_delete": false,
+    "log_retention_days": 30,
+    "tags": {},
+    "mysql_backup_retention_days": 1,
+    "mysql_backup_retention_on_delete": "RETAIN",
+    "mysql_final_backup_on_delete": "REQUIRE_FINAL_BACKUP"
+  },
+  "platform": {
+    "metadataStorage": {
+      "driver": "mysql",
+      "host": "127.0.0.1",
+      "port": 6446,
+      "database": "michelangelo",
+      "user": "michelangelo_app",
+      "existingSecret": "michelangelo-mysql"
+    },
+    "objectStorage": {
+      "auth": "s3_static",
+      "endpoint": "REPLACE.compat.objectstorage.us-ashburn-1.oraclecloud.com",
+      "secure": true,
+      "region": "us-ashburn-1",
+      "bucket": "michelangelo-artifacts",
+      "existingSecret": "michelangelo-object-storage"
+    },
+    "workflow": {
+      "engine": "temporal",
+      "mode": "bundled",
+      "endpoint": "michelangelo-temporal-frontend:7233",
+      "domain": "default"
+    },
+    "mysqlRouter": {
+      "image": "container-registry.oracle.com/mysql/community-router:8.4.6@sha256:468ea2e12477d6c1d8256f575aac33f09a3281531ef982f13bfeea04b1ba02de",
+      "host": "replace.mysql.private",
+      "port": 3306,
+      "caSecret": "michelangelo-mysql-ca",
+      "caKey": "ca.pem",
+      "python": "python",
+      "authSecret": "michelangelo-router-auth"
+    },
+    "ui": {
+      "apiBaseUrl": "http://127.0.0.1:8081"
+    },
+    "images": {
+      "apiserver": "ghcr.io/michelangelo-ai/apiserver:0.11.0@sha256:27f2a509371a6b6848a3b3be78558d4042f8c9b488c7927f5dff92b97a860f12",
+      "worker": "ghcr.io/michelangelo-ai/worker:0.11.0@sha256:a1b500772600e67c7dd02b1e64555ab969f56e14106f27b5236f9719455a1e5f",
+      "ui": "ghcr.io/michelangelo-ai/ui:0.11.0@sha256:d74444d4690e7bf66664be5f70385bd23c739a0e18943e7ddbb96a6bb26e73b4",
+      "controllermgr": "ghcr.io/michelangelo-ai/controllermgr:0.11.0@sha256:ba9e8b77f3c805a61b99d57274a2cec2d4606d4b04f4e6d4a9397a3c0fa23a22"
+    }
+  },
+  "deployment": {
+    "upstream_path": "../.upstream/michelangelo",
+    "namespace": "michelangelo",
+    "release": "michelangelo",
+    "kube_context": "REPLACE-oke-context",
+    "kube_api_server": "https://REPLACE-private-oke:6443",
+    "mysql_mvp_approved": false,
+    "static_object_storage_credentials_approved": false,
+    "enable_mutations": false,
+    "workflow_namespace_registered": false,
+    "router_tls_verified": false,
+    "timeout_seconds": 900
+  }
+}

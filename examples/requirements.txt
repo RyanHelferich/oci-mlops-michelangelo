@@ -1,0 +1,2 @@
+# Optional native identity diagnostic; not an installer dependency.
+oci==2.187.1

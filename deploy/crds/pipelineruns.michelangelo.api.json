@@ -1,0 +1,1893 @@
+{
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "kind": "CustomResourceDefinition",
+  "metadata": {
+    "name": "pipelineruns.michelangelo.api"
+  },
+  "spec": {
+    "conversion": {
+      "strategy": "None"
+    },
+    "group": "michelangelo.api",
+    "names": {
+      "kind": "PipelineRun",
+      "listKind": "PipelineRunList",
+      "plural": "pipelineruns",
+      "singular": "pipelinerun"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v2",
+        "schema": {
+          "openAPIV3Schema": {
+            "properties": {
+              "spec": {
+                "properties": {
+                  "actor": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "proxyUser": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "draft": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "input": {
+                    "type": "object",
+                    "x-kubernetes-preserve-unknown-fields": true
+                  },
+                  "kill": {
+                    "type": "boolean"
+                  },
+                  "localDiff": {
+                    "type": "string"
+                  },
+                  "notifications": {
+                    "items": {
+                      "properties": {
+                        "emails": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "eventTypes": {
+                          "items": {
+                            "enum": [
+                              "EVENT_TYPE_INVALID",
+                              "EVENT_TYPE_PIPELINE_RUN_STATE_SUCCEEDED",
+                              "EVENT_TYPE_PIPELINE_RUN_STATE_KILLED",
+                              "EVENT_TYPE_PIPELINE_RUN_STATE_FAILED",
+                              "EVENT_TYPE_PIPELINE_RUN_STATE_SKIPPED",
+                              "EVENT_TYPE_TRIGGER_RUN_STATE_KILLED",
+                              "EVENT_TYPE_TRIGGER_RUN_STATE_FAILED",
+                              "EVENT_TYPE_TRIGGER_RUN_STATE_SUCCEEDED",
+                              "EVENT_TYPE_PIPELINE_STATE_READY",
+                              "EVENT_TYPE_PIPELINE_STATE_ERROR",
+                              "EVENT_TYPE_PIPELINE_RUN_STATE_RUNNING",
+                              "EVENT_TYPE_PIPELINE_RUN_STATE_STARTED"
+                            ],
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "notificationType": {
+                          "enum": [
+                            "NOTIFICATION_TYPE_INVALID",
+                            "NOTIFICATION_TYPE_EMAIL",
+                            "NOTIFICATION_TYPE_SLACK"
+                          ],
+                          "type": "string"
+                        },
+                        "resourceType": {
+                          "enum": [
+                            "RESOURCE_TYPE_INVALID",
+                            "RESOURCE_TYPE_PIPELINE_RUN",
+                            "RESOURCE_TYPE_TRIGGER_RUN",
+                            "RESOURCE_TYPE_PIPELINE"
+                          ],
+                          "type": "string"
+                        },
+                        "slackDestinations": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "pipeline": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "pipelineSpec": {
+                    "properties": {
+                      "commit": {
+                        "properties": {
+                          "branch": {
+                            "type": "string"
+                          },
+                          "gitRef": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "manifest": {
+                        "properties": {
+                          "content": {
+                            "properties": {
+                              "@type": {
+                                "description": "A URL/resource name that uniquely identifies the type of the serialized protocol buffer message.",
+                                "type": "string"
+                              },
+                              "value": {
+                                "description": "Serialized data of the above type.",
+                                "format": "byte",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "filePath": {
+                            "type": "string"
+                          },
+                          "overridableFieldsUrl": {
+                            "type": "string"
+                          },
+                          "paramsMap": {
+                            "additionalProperties": {
+                              "properties": {
+                                "args": {
+                                  "items": {
+                                    "type": "object",
+                                    "x-kubernetes-preserve-unknown-fields": true
+                                  },
+                                  "type": "array"
+                                },
+                                "environ": {
+                                  "additionalProperties": {
+                                    "type": "string"
+                                  },
+                                  "type": "object"
+                                },
+                                "kwArgs": {
+                                  "type": "object",
+                                  "x-kubernetes-preserve-unknown-fields": true
+                                },
+                                "parameterMap": {
+                                  "additionalProperties": {
+                                    "type": "string"
+                                  },
+                                  "type": "object"
+                                },
+                                "taskConfigs": {
+                                  "additionalProperties": {
+                                    "type": "object",
+                                    "x-kubernetes-preserve-unknown-fields": true
+                                  },
+                                  "type": "object"
+                                },
+                                "workflowConfig": {
+                                  "type": "object",
+                                  "x-kubernetes-preserve-unknown-fields": true
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "object"
+                          },
+                          "taskSpecs": {
+                            "items": {
+                              "properties": {
+                                "imageManifestPath": {
+                                  "type": "string"
+                                },
+                                "imageTargetHash": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "triggerMap": {
+                            "additionalProperties": {
+                              "properties": {
+                                "batchPolicy": {
+                                  "properties": {
+                                    "batchSize": {
+                                      "format": "int32",
+                                      "type": "integer"
+                                    },
+                                    "wait": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "batchRerun": {
+                                  "properties": {
+                                    "pipelineRuns": {
+                                      "items": {
+                                        "properties": {
+                                          "name": {
+                                            "type": "string"
+                                          },
+                                          "namespace": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "resumeFrom": {
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "resumeUpTo": {
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "cronSchedule": {
+                                  "properties": {
+                                    "cron": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "intervalSchedule": {
+                                  "properties": {
+                                    "interval": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "maxConcurrency": {
+                                  "format": "int32",
+                                  "type": "integer"
+                                },
+                                "parametersMap": {
+                                  "additionalProperties": {
+                                    "properties": {
+                                      "args": {
+                                        "items": {
+                                          "type": "object",
+                                          "x-kubernetes-preserve-unknown-fields": true
+                                        },
+                                        "type": "array"
+                                      },
+                                      "environ": {
+                                        "additionalProperties": {
+                                          "type": "string"
+                                        },
+                                        "type": "object"
+                                      },
+                                      "kwArgs": {
+                                        "type": "object",
+                                        "x-kubernetes-preserve-unknown-fields": true
+                                      },
+                                      "parameterMap": {
+                                        "additionalProperties": {
+                                          "type": "string"
+                                        },
+                                        "type": "object"
+                                      },
+                                      "taskConfigs": {
+                                        "additionalProperties": {
+                                          "type": "object",
+                                          "x-kubernetes-preserve-unknown-fields": true
+                                        },
+                                        "type": "object"
+                                      },
+                                      "workflowConfig": {
+                                        "type": "object",
+                                        "x-kubernetes-preserve-unknown-fields": true
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "object"
+                                },
+                                "proxyUser": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "object"
+                          },
+                          "type": {
+                            "enum": [
+                              "PIPELINE_MANIFEST_TYPE_INVALID",
+                              "PIPELINE_MANIFEST_TYPE_YAML",
+                              "PIPELINE_MANIFEST_TYPE_UNIFLOW"
+                            ],
+                            "type": "string"
+                          },
+                          "uniflowFunction": {
+                            "type": "string"
+                          },
+                          "uniflowTar": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "notifications": {
+                        "items": {
+                          "properties": {
+                            "emails": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "eventTypes": {
+                              "items": {
+                                "enum": [
+                                  "EVENT_TYPE_INVALID",
+                                  "EVENT_TYPE_PIPELINE_RUN_STATE_SUCCEEDED",
+                                  "EVENT_TYPE_PIPELINE_RUN_STATE_KILLED",
+                                  "EVENT_TYPE_PIPELINE_RUN_STATE_FAILED",
+                                  "EVENT_TYPE_PIPELINE_RUN_STATE_SKIPPED",
+                                  "EVENT_TYPE_TRIGGER_RUN_STATE_KILLED",
+                                  "EVENT_TYPE_TRIGGER_RUN_STATE_FAILED",
+                                  "EVENT_TYPE_TRIGGER_RUN_STATE_SUCCEEDED",
+                                  "EVENT_TYPE_PIPELINE_STATE_READY",
+                                  "EVENT_TYPE_PIPELINE_STATE_ERROR",
+                                  "EVENT_TYPE_PIPELINE_RUN_STATE_RUNNING",
+                                  "EVENT_TYPE_PIPELINE_RUN_STATE_STARTED"
+                                ],
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "notificationType": {
+                              "enum": [
+                                "NOTIFICATION_TYPE_INVALID",
+                                "NOTIFICATION_TYPE_EMAIL",
+                                "NOTIFICATION_TYPE_SLACK"
+                              ],
+                              "type": "string"
+                            },
+                            "resourceType": {
+                              "enum": [
+                                "RESOURCE_TYPE_INVALID",
+                                "RESOURCE_TYPE_PIPELINE_RUN",
+                                "RESOURCE_TYPE_TRIGGER_RUN",
+                                "RESOURCE_TYPE_PIPELINE"
+                              ],
+                              "type": "string"
+                            },
+                            "slackDestinations": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "owner": {
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "proxyUser": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": {
+                        "enum": [
+                          "PIPELINE_TYPE_INVALID",
+                          "PIPELINE_TYPE_TRAIN",
+                          "PIPELINE_TYPE_EVAL",
+                          "PIPELINE_TYPE_PERF_EVAL",
+                          "PIPELINE_TYPE_EXPERIMENT",
+                          "PIPELINE_TYPE_RETRAIN",
+                          "PIPELINE_TYPE_PREDICTION",
+                          "PIPELINE_TYPE_PERFORMANCE_MONITORING",
+                          "PIPELINE_TYPE_BASIS_FEATURE",
+                          "PIPELINE_TYPE_DATA_PREP",
+                          "PIPELINE_TYPE_ONLINE_OFFLINE_FEATURE_CONSISTENCY",
+                          "PIPELINE_TYPE_FEATURE_GROUP_COMPUTE",
+                          "PIPELINE_TYPE_ONLINE_OFFLINE_FEATURE_CONSISTENCY_ORCHESTRATION",
+                          "PIPELINE_TYPE_POST_PROCESSING",
+                          "PIPELINE_TYPE_OPTIMIZATION",
+                          "PIPELINE_TYPE_SCORER"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "resume": {
+                    "properties": {
+                      "forceResume": {
+                        "type": "boolean"
+                      },
+                      "pipelineRun": {
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "namespace": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "resumeFrom": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "resumeUpTo": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "retryInfo": {
+                    "properties": {
+                      "activityId": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      },
+                      "workflowId": {
+                        "type": "string"
+                      },
+                      "workflowRunId": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "revision": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "workspaceRootDir": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "status": {
+                "properties": {
+                  "code": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "conditions": {
+                    "items": {
+                      "properties": {
+                        "lastUpdatedTimestamp": {
+                          "format": "int64",
+                          "pattern": "^[-]?\\d{1,19}$",
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "properties": {
+                            "@type": {
+                              "description": "A URL/resource name that uniquely identifies the type of the serialized protocol buffer message.",
+                              "type": "string"
+                            },
+                            "value": {
+                              "description": "Serialized data of the above type.",
+                              "format": "byte",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "observedGeneration": {
+                          "format": "int64",
+                          "pattern": "^[-]?\\d{1,19}$",
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "enum": [
+                            "CONDITION_STATUS_UNKNOWN",
+                            "CONDITION_STATUS_TRUE",
+                            "CONDITION_STATUS_FALSE"
+                          ],
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "details": {
+                    "items": {
+                      "properties": {
+                        "@type": {
+                          "description": "A URL/resource name that uniquely identifies the type of the serialized protocol buffer message.",
+                          "type": "string"
+                        },
+                        "value": {
+                          "description": "Serialized data of the above type.",
+                          "format": "byte",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "endTime": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "errorMessage": {
+                    "type": "string"
+                  },
+                  "exceptionType": {
+                    "enum": [
+                      "PIPELINE_RUN_EXCEPTION_TYPE_INVALID",
+                      "PIPELINE_RUN_EXCEPTION_TYPE_SYSTEM",
+                      "PIPELINE_RUN_EXCEPTION_TYPE_USER"
+                    ],
+                    "type": "string"
+                  },
+                  "logUrl": {
+                    "type": "string"
+                  },
+                  "sourcePipeline": {
+                    "properties": {
+                      "draftPipeline": {
+                        "properties": {
+                          "metadata": {
+                            "properties": {
+                              "annotations": {
+                                "additionalProperties": {
+                                  "type": "string"
+                                },
+                                "type": "object"
+                              },
+                              "creationTimestamp": {
+                                "properties": {
+                                  "nanos": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                  },
+                                  "seconds": {
+                                    "format": "int64",
+                                    "pattern": "^[-]?\\d{1,19}$",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "deletionGracePeriodSeconds": {
+                                "format": "int64",
+                                "pattern": "^[-]?\\d{1,19}$",
+                                "type": "string"
+                              },
+                              "deletionTimestamp": {
+                                "properties": {
+                                  "nanos": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                  },
+                                  "seconds": {
+                                    "format": "int64",
+                                    "pattern": "^[-]?\\d{1,19}$",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "finalizers": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "generateName": {
+                                "type": "string"
+                              },
+                              "generation": {
+                                "format": "int64",
+                                "pattern": "^[-]?\\d{1,19}$",
+                                "type": "string"
+                              },
+                              "labels": {
+                                "additionalProperties": {
+                                  "type": "string"
+                                },
+                                "type": "object"
+                              },
+                              "managedFields": {
+                                "items": {
+                                  "properties": {
+                                    "apiVersion": {
+                                      "type": "string"
+                                    },
+                                    "fieldsType": {
+                                      "type": "string"
+                                    },
+                                    "fieldsV1": {
+                                      "properties": {
+                                        "raw": {
+                                          "format": "byte",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "manager": {
+                                      "type": "string"
+                                    },
+                                    "operation": {
+                                      "type": "string"
+                                    },
+                                    "subresource": {
+                                      "type": "string"
+                                    },
+                                    "time": {
+                                      "properties": {
+                                        "nanos": {
+                                          "format": "int32",
+                                          "type": "integer"
+                                        },
+                                        "seconds": {
+                                          "format": "int64",
+                                          "pattern": "^[-]?\\d{1,19}$",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "namespace": {
+                                "type": "string"
+                              },
+                              "ownerReferences": {
+                                "items": {
+                                  "properties": {
+                                    "apiVersion": {
+                                      "type": "string"
+                                    },
+                                    "blockOwnerDeletion": {
+                                      "type": "boolean"
+                                    },
+                                    "controller": {
+                                      "type": "boolean"
+                                    },
+                                    "kind": {
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "uid": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "resourceVersion": {
+                                "type": "string"
+                              },
+                              "selfLink": {
+                                "type": "string"
+                              },
+                              "uid": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "spec": {
+                            "properties": {
+                              "commit": {
+                                "properties": {
+                                  "branch": {
+                                    "type": "string"
+                                  },
+                                  "gitRef": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "manifest": {
+                                "properties": {
+                                  "content": {
+                                    "properties": {
+                                      "@type": {
+                                        "description": "A URL/resource name that uniquely identifies the type of the serialized protocol buffer message.",
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "description": "Serialized data of the above type.",
+                                        "format": "byte",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "filePath": {
+                                    "type": "string"
+                                  },
+                                  "overridableFieldsUrl": {
+                                    "type": "string"
+                                  },
+                                  "paramsMap": {
+                                    "additionalProperties": {
+                                      "properties": {
+                                        "args": {
+                                          "items": {
+                                            "type": "object",
+                                            "x-kubernetes-preserve-unknown-fields": true
+                                          },
+                                          "type": "array"
+                                        },
+                                        "environ": {
+                                          "additionalProperties": {
+                                            "type": "string"
+                                          },
+                                          "type": "object"
+                                        },
+                                        "kwArgs": {
+                                          "type": "object",
+                                          "x-kubernetes-preserve-unknown-fields": true
+                                        },
+                                        "parameterMap": {
+                                          "additionalProperties": {
+                                            "type": "string"
+                                          },
+                                          "type": "object"
+                                        },
+                                        "taskConfigs": {
+                                          "additionalProperties": {
+                                            "type": "object",
+                                            "x-kubernetes-preserve-unknown-fields": true
+                                          },
+                                          "type": "object"
+                                        },
+                                        "workflowConfig": {
+                                          "type": "object",
+                                          "x-kubernetes-preserve-unknown-fields": true
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "object"
+                                  },
+                                  "taskSpecs": {
+                                    "items": {
+                                      "properties": {
+                                        "imageManifestPath": {
+                                          "type": "string"
+                                        },
+                                        "imageTargetHash": {
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "triggerMap": {
+                                    "additionalProperties": {
+                                      "properties": {
+                                        "batchPolicy": {
+                                          "properties": {
+                                            "batchSize": {
+                                              "format": "int32",
+                                              "type": "integer"
+                                            },
+                                            "wait": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "batchRerun": {
+                                          "properties": {
+                                            "pipelineRuns": {
+                                              "items": {
+                                                "properties": {
+                                                  "name": {
+                                                    "type": "string"
+                                                  },
+                                                  "namespace": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "resumeFrom": {
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "resumeUpTo": {
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "cronSchedule": {
+                                          "properties": {
+                                            "cron": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "intervalSchedule": {
+                                          "properties": {
+                                            "interval": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "maxConcurrency": {
+                                          "format": "int32",
+                                          "type": "integer"
+                                        },
+                                        "parametersMap": {
+                                          "additionalProperties": {
+                                            "properties": {
+                                              "args": {
+                                                "items": {
+                                                  "type": "object",
+                                                  "x-kubernetes-preserve-unknown-fields": true
+                                                },
+                                                "type": "array"
+                                              },
+                                              "environ": {
+                                                "additionalProperties": {
+                                                  "type": "string"
+                                                },
+                                                "type": "object"
+                                              },
+                                              "kwArgs": {
+                                                "type": "object",
+                                                "x-kubernetes-preserve-unknown-fields": true
+                                              },
+                                              "parameterMap": {
+                                                "additionalProperties": {
+                                                  "type": "string"
+                                                },
+                                                "type": "object"
+                                              },
+                                              "taskConfigs": {
+                                                "additionalProperties": {
+                                                  "type": "object",
+                                                  "x-kubernetes-preserve-unknown-fields": true
+                                                },
+                                                "type": "object"
+                                              },
+                                              "workflowConfig": {
+                                                "type": "object",
+                                                "x-kubernetes-preserve-unknown-fields": true
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "object"
+                                        },
+                                        "proxyUser": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "PIPELINE_MANIFEST_TYPE_INVALID",
+                                      "PIPELINE_MANIFEST_TYPE_YAML",
+                                      "PIPELINE_MANIFEST_TYPE_UNIFLOW"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "uniflowFunction": {
+                                    "type": "string"
+                                  },
+                                  "uniflowTar": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "notifications": {
+                                "items": {
+                                  "properties": {
+                                    "emails": {
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "eventTypes": {
+                                      "items": {
+                                        "enum": [
+                                          "EVENT_TYPE_INVALID",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_SUCCEEDED",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_KILLED",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_FAILED",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_SKIPPED",
+                                          "EVENT_TYPE_TRIGGER_RUN_STATE_KILLED",
+                                          "EVENT_TYPE_TRIGGER_RUN_STATE_FAILED",
+                                          "EVENT_TYPE_TRIGGER_RUN_STATE_SUCCEEDED",
+                                          "EVENT_TYPE_PIPELINE_STATE_READY",
+                                          "EVENT_TYPE_PIPELINE_STATE_ERROR",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_RUNNING",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_STARTED"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "notificationType": {
+                                      "enum": [
+                                        "NOTIFICATION_TYPE_INVALID",
+                                        "NOTIFICATION_TYPE_EMAIL",
+                                        "NOTIFICATION_TYPE_SLACK"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "resourceType": {
+                                      "enum": [
+                                        "RESOURCE_TYPE_INVALID",
+                                        "RESOURCE_TYPE_PIPELINE_RUN",
+                                        "RESOURCE_TYPE_TRIGGER_RUN",
+                                        "RESOURCE_TYPE_PIPELINE"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "slackDestinations": {
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "owner": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "proxyUser": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": {
+                                "enum": [
+                                  "PIPELINE_TYPE_INVALID",
+                                  "PIPELINE_TYPE_TRAIN",
+                                  "PIPELINE_TYPE_EVAL",
+                                  "PIPELINE_TYPE_PERF_EVAL",
+                                  "PIPELINE_TYPE_EXPERIMENT",
+                                  "PIPELINE_TYPE_RETRAIN",
+                                  "PIPELINE_TYPE_PREDICTION",
+                                  "PIPELINE_TYPE_PERFORMANCE_MONITORING",
+                                  "PIPELINE_TYPE_BASIS_FEATURE",
+                                  "PIPELINE_TYPE_DATA_PREP",
+                                  "PIPELINE_TYPE_ONLINE_OFFLINE_FEATURE_CONSISTENCY",
+                                  "PIPELINE_TYPE_FEATURE_GROUP_COMPUTE",
+                                  "PIPELINE_TYPE_ONLINE_OFFLINE_FEATURE_CONSISTENCY_ORCHESTRATION",
+                                  "PIPELINE_TYPE_POST_PROCESSING",
+                                  "PIPELINE_TYPE_OPTIMIZATION",
+                                  "PIPELINE_TYPE_SCORER"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "properties": {
+                              "buildId": {
+                                "type": "string"
+                              },
+                              "containerImage": {
+                                "type": "string"
+                              },
+                              "errorMessage": {
+                                "type": "string"
+                              },
+                              "latestRevision": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "namespace": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "registeredWorkflow": {
+                                "properties": {
+                                  "@type": {
+                                    "description": "A URL/resource name that uniquely identifies the type of the serialized protocol buffer message.",
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "description": "Serialized data of the above type.",
+                                    "format": "byte",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "state": {
+                                "enum": [
+                                  "PIPELINE_STATE_INVALID",
+                                  "PIPELINE_STATE_CREATED",
+                                  "PIPELINE_STATE_BUILDING",
+                                  "PIPELINE_STATE_READY",
+                                  "PIPELINE_STATE_ERROR"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "typeMeta": {
+                            "properties": {
+                              "apiVersion": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "pipeline": {
+                        "properties": {
+                          "metadata": {
+                            "properties": {
+                              "annotations": {
+                                "additionalProperties": {
+                                  "type": "string"
+                                },
+                                "type": "object"
+                              },
+                              "creationTimestamp": {
+                                "properties": {
+                                  "nanos": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                  },
+                                  "seconds": {
+                                    "format": "int64",
+                                    "pattern": "^[-]?\\d{1,19}$",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "deletionGracePeriodSeconds": {
+                                "format": "int64",
+                                "pattern": "^[-]?\\d{1,19}$",
+                                "type": "string"
+                              },
+                              "deletionTimestamp": {
+                                "properties": {
+                                  "nanos": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                  },
+                                  "seconds": {
+                                    "format": "int64",
+                                    "pattern": "^[-]?\\d{1,19}$",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "finalizers": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "generateName": {
+                                "type": "string"
+                              },
+                              "generation": {
+                                "format": "int64",
+                                "pattern": "^[-]?\\d{1,19}$",
+                                "type": "string"
+                              },
+                              "labels": {
+                                "additionalProperties": {
+                                  "type": "string"
+                                },
+                                "type": "object"
+                              },
+                              "managedFields": {
+                                "items": {
+                                  "properties": {
+                                    "apiVersion": {
+                                      "type": "string"
+                                    },
+                                    "fieldsType": {
+                                      "type": "string"
+                                    },
+                                    "fieldsV1": {
+                                      "properties": {
+                                        "raw": {
+                                          "format": "byte",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "manager": {
+                                      "type": "string"
+                                    },
+                                    "operation": {
+                                      "type": "string"
+                                    },
+                                    "subresource": {
+                                      "type": "string"
+                                    },
+                                    "time": {
+                                      "properties": {
+                                        "nanos": {
+                                          "format": "int32",
+                                          "type": "integer"
+                                        },
+                                        "seconds": {
+                                          "format": "int64",
+                                          "pattern": "^[-]?\\d{1,19}$",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "namespace": {
+                                "type": "string"
+                              },
+                              "ownerReferences": {
+                                "items": {
+                                  "properties": {
+                                    "apiVersion": {
+                                      "type": "string"
+                                    },
+                                    "blockOwnerDeletion": {
+                                      "type": "boolean"
+                                    },
+                                    "controller": {
+                                      "type": "boolean"
+                                    },
+                                    "kind": {
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "uid": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "resourceVersion": {
+                                "type": "string"
+                              },
+                              "selfLink": {
+                                "type": "string"
+                              },
+                              "uid": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "spec": {
+                            "properties": {
+                              "commit": {
+                                "properties": {
+                                  "branch": {
+                                    "type": "string"
+                                  },
+                                  "gitRef": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "manifest": {
+                                "properties": {
+                                  "content": {
+                                    "properties": {
+                                      "@type": {
+                                        "description": "A URL/resource name that uniquely identifies the type of the serialized protocol buffer message.",
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "description": "Serialized data of the above type.",
+                                        "format": "byte",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "filePath": {
+                                    "type": "string"
+                                  },
+                                  "overridableFieldsUrl": {
+                                    "type": "string"
+                                  },
+                                  "paramsMap": {
+                                    "additionalProperties": {
+                                      "properties": {
+                                        "args": {
+                                          "items": {
+                                            "type": "object",
+                                            "x-kubernetes-preserve-unknown-fields": true
+                                          },
+                                          "type": "array"
+                                        },
+                                        "environ": {
+                                          "additionalProperties": {
+                                            "type": "string"
+                                          },
+                                          "type": "object"
+                                        },
+                                        "kwArgs": {
+                                          "type": "object",
+                                          "x-kubernetes-preserve-unknown-fields": true
+                                        },
+                                        "parameterMap": {
+                                          "additionalProperties": {
+                                            "type": "string"
+                                          },
+                                          "type": "object"
+                                        },
+                                        "taskConfigs": {
+                                          "additionalProperties": {
+                                            "type": "object",
+                                            "x-kubernetes-preserve-unknown-fields": true
+                                          },
+                                          "type": "object"
+                                        },
+                                        "workflowConfig": {
+                                          "type": "object",
+                                          "x-kubernetes-preserve-unknown-fields": true
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "object"
+                                  },
+                                  "taskSpecs": {
+                                    "items": {
+                                      "properties": {
+                                        "imageManifestPath": {
+                                          "type": "string"
+                                        },
+                                        "imageTargetHash": {
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "triggerMap": {
+                                    "additionalProperties": {
+                                      "properties": {
+                                        "batchPolicy": {
+                                          "properties": {
+                                            "batchSize": {
+                                              "format": "int32",
+                                              "type": "integer"
+                                            },
+                                            "wait": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "batchRerun": {
+                                          "properties": {
+                                            "pipelineRuns": {
+                                              "items": {
+                                                "properties": {
+                                                  "name": {
+                                                    "type": "string"
+                                                  },
+                                                  "namespace": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "resumeFrom": {
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "resumeUpTo": {
+                                              "items": {
+                                                "type": "string"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "cronSchedule": {
+                                          "properties": {
+                                            "cron": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "intervalSchedule": {
+                                          "properties": {
+                                            "interval": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "maxConcurrency": {
+                                          "format": "int32",
+                                          "type": "integer"
+                                        },
+                                        "parametersMap": {
+                                          "additionalProperties": {
+                                            "properties": {
+                                              "args": {
+                                                "items": {
+                                                  "type": "object",
+                                                  "x-kubernetes-preserve-unknown-fields": true
+                                                },
+                                                "type": "array"
+                                              },
+                                              "environ": {
+                                                "additionalProperties": {
+                                                  "type": "string"
+                                                },
+                                                "type": "object"
+                                              },
+                                              "kwArgs": {
+                                                "type": "object",
+                                                "x-kubernetes-preserve-unknown-fields": true
+                                              },
+                                              "parameterMap": {
+                                                "additionalProperties": {
+                                                  "type": "string"
+                                                },
+                                                "type": "object"
+                                              },
+                                              "taskConfigs": {
+                                                "additionalProperties": {
+                                                  "type": "object",
+                                                  "x-kubernetes-preserve-unknown-fields": true
+                                                },
+                                                "type": "object"
+                                              },
+                                              "workflowConfig": {
+                                                "type": "object",
+                                                "x-kubernetes-preserve-unknown-fields": true
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "object"
+                                        },
+                                        "proxyUser": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "PIPELINE_MANIFEST_TYPE_INVALID",
+                                      "PIPELINE_MANIFEST_TYPE_YAML",
+                                      "PIPELINE_MANIFEST_TYPE_UNIFLOW"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "uniflowFunction": {
+                                    "type": "string"
+                                  },
+                                  "uniflowTar": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "notifications": {
+                                "items": {
+                                  "properties": {
+                                    "emails": {
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "eventTypes": {
+                                      "items": {
+                                        "enum": [
+                                          "EVENT_TYPE_INVALID",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_SUCCEEDED",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_KILLED",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_FAILED",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_SKIPPED",
+                                          "EVENT_TYPE_TRIGGER_RUN_STATE_KILLED",
+                                          "EVENT_TYPE_TRIGGER_RUN_STATE_FAILED",
+                                          "EVENT_TYPE_TRIGGER_RUN_STATE_SUCCEEDED",
+                                          "EVENT_TYPE_PIPELINE_STATE_READY",
+                                          "EVENT_TYPE_PIPELINE_STATE_ERROR",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_RUNNING",
+                                          "EVENT_TYPE_PIPELINE_RUN_STATE_STARTED"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "notificationType": {
+                                      "enum": [
+                                        "NOTIFICATION_TYPE_INVALID",
+                                        "NOTIFICATION_TYPE_EMAIL",
+                                        "NOTIFICATION_TYPE_SLACK"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "resourceType": {
+                                      "enum": [
+                                        "RESOURCE_TYPE_INVALID",
+                                        "RESOURCE_TYPE_PIPELINE_RUN",
+                                        "RESOURCE_TYPE_TRIGGER_RUN",
+                                        "RESOURCE_TYPE_PIPELINE"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "slackDestinations": {
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "owner": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "proxyUser": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": {
+                                "enum": [
+                                  "PIPELINE_TYPE_INVALID",
+                                  "PIPELINE_TYPE_TRAIN",
+                                  "PIPELINE_TYPE_EVAL",
+                                  "PIPELINE_TYPE_PERF_EVAL",
+                                  "PIPELINE_TYPE_EXPERIMENT",
+                                  "PIPELINE_TYPE_RETRAIN",
+                                  "PIPELINE_TYPE_PREDICTION",
+                                  "PIPELINE_TYPE_PERFORMANCE_MONITORING",
+                                  "PIPELINE_TYPE_BASIS_FEATURE",
+                                  "PIPELINE_TYPE_DATA_PREP",
+                                  "PIPELINE_TYPE_ONLINE_OFFLINE_FEATURE_CONSISTENCY",
+                                  "PIPELINE_TYPE_FEATURE_GROUP_COMPUTE",
+                                  "PIPELINE_TYPE_ONLINE_OFFLINE_FEATURE_CONSISTENCY_ORCHESTRATION",
+                                  "PIPELINE_TYPE_POST_PROCESSING",
+                                  "PIPELINE_TYPE_OPTIMIZATION",
+                                  "PIPELINE_TYPE_SCORER"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "properties": {
+                              "buildId": {
+                                "type": "string"
+                              },
+                              "containerImage": {
+                                "type": "string"
+                              },
+                              "errorMessage": {
+                                "type": "string"
+                              },
+                              "latestRevision": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "namespace": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "registeredWorkflow": {
+                                "properties": {
+                                  "@type": {
+                                    "description": "A URL/resource name that uniquely identifies the type of the serialized protocol buffer message.",
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "description": "Serialized data of the above type.",
+                                    "format": "byte",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "state": {
+                                "enum": [
+                                  "PIPELINE_STATE_INVALID",
+                                  "PIPELINE_STATE_CREATED",
+                                  "PIPELINE_STATE_BUILDING",
+                                  "PIPELINE_STATE_READY",
+                                  "PIPELINE_STATE_ERROR"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "typeMeta": {
+                            "properties": {
+                              "apiVersion": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "state": {
+                    "enum": [
+                      "PIPELINE_RUN_STATE_INVALID",
+                      "PIPELINE_RUN_STATE_PENDING",
+                      "PIPELINE_RUN_STATE_RUNNING",
+                      "PIPELINE_RUN_STATE_SUCCEEDED",
+                      "PIPELINE_RUN_STATE_KILLED",
+                      "PIPELINE_RUN_STATE_FAILED",
+                      "PIPELINE_RUN_STATE_SKIPPED"
+                    ],
+                    "type": "string"
+                  },
+                  "steps": {
+                    "items": {
+                      "properties": {
+                        "activityId": {
+                          "type": "string"
+                        },
+                        "attemptDetails": {
+                          "items": {
+                            "properties": {
+                              "attemptId": {
+                                "type": "string"
+                              },
+                              "stepInfo": {
+                                "type": "object",
+                                "x-kubernetes-preserve-unknown-fields": true
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "attemptIds": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "displayName": {
+                          "type": "string"
+                        },
+                        "endTime": {
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        "input": {
+                          "type": "object",
+                          "x-kubernetes-preserve-unknown-fields": true
+                        },
+                        "logUrl": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "output": {
+                          "type": "object",
+                          "x-kubernetes-preserve-unknown-fields": true
+                        },
+                        "resources": {
+                          "items": {
+                            "properties": {
+                              "externalResource": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "internalResource": {
+                                "properties": {
+                                  "entity": {
+                                    "properties": {
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "namespace": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "entityType": {
+                                    "properties": {
+                                      "apiVersion": {
+                                        "type": "string"
+                                      },
+                                      "kind": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "startTime": {
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        "state": {
+                          "enum": [
+                            "PIPELINE_RUN_STEP_STATE_INVALID",
+                            "PIPELINE_RUN_STEP_STATE_PENDING",
+                            "PIPELINE_RUN_STEP_STATE_RUNNING",
+                            "PIPELINE_RUN_STEP_STATE_SUCCEEDED",
+                            "PIPELINE_RUN_STEP_STATE_KILLED",
+                            "PIPELINE_RUN_STEP_STATE_FAILED",
+                            "PIPELINE_RUN_STEP_STATE_SKIPPED"
+                          ],
+                          "type": "string"
+                        },
+                        "stepCachedOutputs": {
+                          "properties": {
+                            "checkpoints": {
+                              "items": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "namespace": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "intermediateVars": {
+                              "items": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "namespace": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "rawModels": {
+                              "items": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "namespace": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "subSteps": {
+                          "items": {
+                            "type": "object",
+                            "x-kubernetes-preserve-unknown-fields": true
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "workflowId": {
+                    "type": "string"
+                  },
+                  "workflowRunId": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "served": true,
+        "storage": true,
+        "subresources": {
+          "status": {}
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+    "repository":  "https://github.com/michelangelo-ai/michelangelo.git",
+    "revision":  "37852aace4dd9f9658c11c19c56d19692ac5d2c4",
+    "chart_path":  "helm/michelangelo",
+    "chart_version":  "0.11.0",
+    "upstream_reference":  "v0.11.0",
+    "supersedes_inspected_main_revision":  "d717c2b1f8d2512cb6859d5560d54960471dc89f",
+    "images":  {
+                   "apiserver":  "ghcr.io/michelangelo-ai/apiserver:0.11.0@sha256:27f2a509371a6b6848a3b3be78558d4042f8c9b488c7927f5dff92b97a860f12",
+                   "worker":  "ghcr.io/michelangelo-ai/worker:0.11.0@sha256:a1b500772600e67c7dd02b1e64555ab969f56e14106f27b5236f9719455a1e5f",
+                   "ui":  "ghcr.io/michelangelo-ai/ui:0.11.0@sha256:d74444d4690e7bf66664be5f70385bd23c739a0e18943e7ddbb96a6bb26e73b4",
+                   "controllermgr":  "ghcr.io/michelangelo-ai/controllermgr:0.11.0@sha256:ba9e8b77f3c805a61b99d57274a2cec2d4606d4b04f4e6d4a9397a3c0fa23a22"
+               },
+    "chart_dependencies":  {
+                               "cadence":  "1.1.0",
+                               "temporal":  "0.44.0"
+                           },
+    "chart_dependency_sha256":  {
+                                    "cadence-1.1.0.tgz":  "9e3855135bdcc5103aa64393cfba0d9f35fdef68608b249d8471ff006bca1a21",
+                                    "temporal-0.44.0.tgz":  "2ce7e7ff78888cb7732e9b4e469e60da7591c02d81d3149c9a8d1ad21d3a8a03"
+                                },
+    "crd_bundle_sha256":  "1e7920b28a706850297def718450633f3e7a6681d70510aa957a7dda01f65e9a",
+    "support_image_sha256":  {
+                                 "docker.io/library/mysql:8.0":  "sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b",
+                                 "docker.io/library/busybox:1.36":  "sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662",
+                                 "docker.io/temporalio/server:1.24.2":  "sha256:16de74d893e813053b82551eb4463c795b368d2029520b4c8fe2e47e1c336bb9",
+                                 "docker.io/temporalio/admin-tools:1.24.2-tctl-1.18.1-cli-0.13.0":  "sha256:a64874edd4fedecb9b6ca74b10cf9512f09522d676ce2af5bdaf06ab7adadd12",
+                                 "docker.io/envoyproxy/envoy:v1.29-latest":  "sha256:5a292b91adc87aa56146fb9ee52fc85c30570d0f175d95b48cde8035a2e641dd"
+                             }
+}

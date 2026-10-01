@@ -1,0 +1,185 @@
+{
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "kind": "CustomResourceDefinition",
+  "metadata": {
+    "name": "projects.michelangelo.api"
+  },
+  "spec": {
+    "conversion": {
+      "strategy": "None"
+    },
+    "group": "michelangelo.api",
+    "names": {
+      "kind": "Project",
+      "listKind": "ProjectList",
+      "plural": "projects",
+      "singular": "project"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v2",
+        "schema": {
+          "openAPIV3Schema": {
+            "properties": {
+              "spec": {
+                "properties": {
+                  "commit": {
+                    "properties": {
+                      "branch": {
+                        "type": "string"
+                      },
+                      "gitRef": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "gitRepo": {
+                    "type": "string"
+                  },
+                  "owner": {
+                    "properties": {
+                      "ownerGroups": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "owners": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "owningTeam": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "retentionConfig": {
+                    "properties": {
+                      "endpointRetention": {
+                        "properties": {
+                          "retentionInDays": {
+                            "format": "int32",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "modelRetention": {
+                        "properties": {
+                          "retentionInDays": {
+                            "format": "int32",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "notificationControl": {
+                        "enum": [
+                          "NOTIFICATION_CONTROL_INVALID",
+                          "NOTIFICATION_CONTROL_PROJECT_OWNER_AND_USER_TEAM",
+                          "NOTIFICATION_CONTROL_PROJECT_OWNER_ONLY",
+                          "NOTIFICATION_CONTROL_NOTIFICATION_OFF"
+                        ],
+                        "type": "string"
+                      },
+                      "offlineDeploymentRetention": {
+                        "properties": {
+                          "retentionInDays": {
+                            "format": "int32",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "onlineDeploymentRetention": {
+                        "properties": {
+                          "retentionInDays": {
+                            "format": "int32",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "rootDir": {
+                    "type": "string"
+                  },
+                  "supportingLinks": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "type": "object"
+                  },
+                  "tier": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "typeInfo": {
+                    "properties": {
+                      "isCoreMl": {
+                        "type": "boolean"
+                      },
+                      "isGenerativeAi": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "status": {
+                "properties": {
+                  "errorMessage": {
+                    "type": "string"
+                  },
+                  "lastUpdateTime": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "phase": {
+                    "enum": [
+                      "PROJECT_PHASE_INVALID",
+                      "PROJECT_PHASE_DEVELOPMENT",
+                      "PROJECT_PHASE_STAGING",
+                      "PROJECT_PHASE_PRODUCTION",
+                      "PROJECT_PHASE_DECOMMISSION"
+                    ],
+                    "type": "string"
+                  },
+                  "state": {
+                    "enum": [
+                      "PROJECT_STATE_INVALID",
+                      "PROJECT_STATE_PROVISIONING",
+                      "PROJECT_STATE_PROVISION_PENDING",
+                      "PROJECT_STATE_READY",
+                      "PROJECT_STATE_ERROR"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "served": true,
+        "storage": true,
+        "subresources": {
+          "status": {}
+        }
+      }
+    ]
+  }
+}

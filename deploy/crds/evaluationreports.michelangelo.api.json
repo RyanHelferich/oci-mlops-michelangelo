@@ -1,0 +1,2719 @@
+{
+  "apiVersion": "apiextensions.k8s.io/v1",
+  "kind": "CustomResourceDefinition",
+  "metadata": {
+    "name": "evaluationreports.michelangelo.api"
+  },
+  "spec": {
+    "conversion": {
+      "strategy": "None"
+    },
+    "group": "michelangelo.api",
+    "names": {
+      "kind": "EvaluationReport",
+      "listKind": "EvaluationReportList",
+      "plural": "evaluationreports",
+      "singular": "evaluationreport"
+    },
+    "scope": "Namespaced",
+    "versions": [
+      {
+        "name": "v2",
+        "schema": {
+          "openAPIV3Schema": {
+            "properties": {
+              "spec": {
+                "properties": {
+                  "charts": {
+                    "items": {
+                      "properties": {
+                        "barChart": {
+                          "properties": {
+                            "bars": {
+                              "items": {
+                                "properties": {
+                                  "filterValue": {
+                                    "items": {
+                                      "properties": {
+                                        "metadata": {
+                                          "properties": {
+                                            "additionalValues": {
+                                              "items": {
+                                                "properties": {
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "operations": {
+                                              "items": {
+                                                "properties": {
+                                                  "opType": {
+                                                    "type": "string"
+                                                  },
+                                                  "params": {
+                                                    "type": "object",
+                                                    "x-kubernetes-preserve-unknown-fields": true
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "number": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "strValue": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "lineName": {
+                                    "type": "string"
+                                  },
+                                  "points": {
+                                    "items": {
+                                      "properties": {
+                                        "filterValue": {
+                                          "properties": {
+                                            "metadata": {
+                                              "properties": {
+                                                "additionalValues": {
+                                                  "items": {
+                                                    "properties": {
+                                                      "number": {
+                                                        "format": "double",
+                                                        "type": "number"
+                                                      },
+                                                      "strValue": {
+                                                        "type": "string"
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "type": "array"
+                                                },
+                                                "operations": {
+                                                  "items": {
+                                                    "properties": {
+                                                      "opType": {
+                                                        "type": "string"
+                                                      },
+                                                      "params": {
+                                                        "type": "object",
+                                                        "x-kubernetes-preserve-unknown-fields": true
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "type": "array"
+                                                }
+                                              },
+                                              "type": "object"
+                                            },
+                                            "number": {
+                                              "format": "double",
+                                              "type": "number"
+                                            },
+                                            "strValue": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "pointLabel": {
+                                          "type": "string"
+                                        },
+                                        "pointMetadata": {
+                                          "additionalProperties": {
+                                            "type": "string"
+                                          },
+                                          "type": "object"
+                                        },
+                                        "x": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "y": {
+                                          "format": "double",
+                                          "type": "number"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "stackOrientation": {
+                              "enum": [
+                                "STACK_ORIENTATION_INVALID",
+                                "STACK_ORIENTATION_HORIZONTAL",
+                                "STACK_ORIENTATION_VERTICAL"
+                              ],
+                              "type": "string"
+                            },
+                            "xAxis": {
+                              "type": "string"
+                            },
+                            "yAxis": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "boxPlot": {
+                          "properties": {
+                            "firstQuartile": {
+                              "format": "double",
+                              "type": "number"
+                            },
+                            "maximum": {
+                              "format": "double",
+                              "type": "number"
+                            },
+                            "median": {
+                              "format": "double",
+                              "type": "number"
+                            },
+                            "minimum": {
+                              "format": "double",
+                              "type": "number"
+                            },
+                            "thirdQuartile": {
+                              "format": "double",
+                              "type": "number"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "chartLayoutSpec": {
+                          "properties": {
+                            "height": {
+                              "type": "string"
+                            },
+                            "isInline": {
+                              "type": "boolean"
+                            },
+                            "legendLayoutSpec": {
+                              "properties": {
+                                "collapsible": {
+                                  "type": "boolean"
+                                },
+                                "filterable": {
+                                  "type": "boolean"
+                                },
+                                "orientation": {
+                                  "enum": [
+                                    "ORIENTATION_INVALID",
+                                    "ORIENTATION_HORIZONTAL",
+                                    "ORIENTATION_VERTICAL"
+                                  ],
+                                  "type": "string"
+                                },
+                                "position": {
+                                  "enum": [
+                                    "POSITION_INVALID",
+                                    "POSITION_TOP",
+                                    "POSITION_BOTTOM",
+                                    "POSITION_LEFT",
+                                    "POSITION_RIGHT"
+                                  ],
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "width": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "chartType": {
+                          "enum": [
+                            "CHART_TYPE_RICH_INVALID",
+                            "CHART_TYPE_RICH_TEXT",
+                            "CHART_TYPE_LINE_CHART",
+                            "CHART_TYPE_POINT_CHART",
+                            "CHART_TYPE_HISTOGRAM",
+                            "CHART_TYPE_SCALAR",
+                            "CHART_TYPE_TABLE",
+                            "CHART_TYPE_CONFUSION_MATRIX",
+                            "CHART_TYPE_BOX_PLOT",
+                            "CHART_TYPE_BAR_CHART",
+                            "CHART_TYPE_MULTI_CLASS_CONFUSION_MATRIX",
+                            "CHART_TYPE_IMAGE",
+                            "CHART_TYPE_JSON",
+                            "CHART_TYPE_TABLE_COLLECTION",
+                            "CHART_TYPE_TIME_SERIES",
+                            "CHART_TYPE_TIME_SERIES_COLLECTION",
+                            "CHART_TYPE_FILTER",
+                            "CHART_TYPE_FILTER_COLLECTION"
+                          ],
+                          "type": "string"
+                        },
+                        "columnStyle": {
+                          "enum": [
+                            "CHART_COLUMN_STYLE_INVALID",
+                            "CHART_COLUMN_STYLE_FULL_ROW"
+                          ],
+                          "type": "string"
+                        },
+                        "confusionMatrix": {
+                          "properties": {
+                            "matrixSeries": {
+                              "items": {
+                                "properties": {
+                                  "matrices": {
+                                    "items": {
+                                      "properties": {
+                                        "filterValues": {
+                                          "items": {
+                                            "properties": {
+                                              "metadata": {
+                                                "properties": {
+                                                  "additionalValues": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "number": {
+                                                          "format": "double",
+                                                          "type": "number"
+                                                        },
+                                                        "strValue": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  },
+                                                  "operations": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "opType": {
+                                                          "type": "string"
+                                                        },
+                                                        "params": {
+                                                          "type": "object",
+                                                          "x-kubernetes-preserve-unknown-fields": true
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "number": {
+                                                "format": "double",
+                                                "type": "number"
+                                              },
+                                              "strValue": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "matrixRows": {
+                                          "items": {
+                                            "properties": {
+                                              "cells": {
+                                                "items": {
+                                                  "properties": {
+                                                    "metadata": {
+                                                      "properties": {
+                                                        "additionalValues": {
+                                                          "items": {
+                                                            "properties": {
+                                                              "number": {
+                                                                "format": "double",
+                                                                "type": "number"
+                                                              },
+                                                              "strValue": {
+                                                                "type": "string"
+                                                              }
+                                                            },
+                                                            "type": "object"
+                                                          },
+                                                          "type": "array"
+                                                        },
+                                                        "operations": {
+                                                          "items": {
+                                                            "properties": {
+                                                              "opType": {
+                                                                "type": "string"
+                                                              },
+                                                              "params": {
+                                                                "type": "object",
+                                                                "x-kubernetes-preserve-unknown-fields": true
+                                                              }
+                                                            },
+                                                            "type": "object"
+                                                          },
+                                                          "type": "array"
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "number": {
+                                                      "format": "double",
+                                                      "type": "number"
+                                                    },
+                                                    "strValue": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "type": "object"
+                                                },
+                                                "type": "array"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "dataPointSource": {
+                          "properties": {
+                            "properties": {
+                              "additionalProperties": {
+                                "type": "string"
+                              },
+                              "type": "object"
+                            },
+                            "queryString": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "enum": [
+                                "DATA_POINT_SOURCE_TYPE_INVALID",
+                                "DATA_POINT_SOURCE_TYPE_EMBEDDED",
+                                "DATA_POINT_SOURCE_TYPE_METRIC_STORE"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "filter": {
+                          "properties": {
+                            "dateRange": {
+                              "properties": {
+                                "durationFromNow": {
+                                  "type": "string"
+                                },
+                                "end": {
+                                  "format": "date-time",
+                                  "type": "string"
+                                },
+                                "start": {
+                                  "format": "date-time",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "filterId": {
+                              "type": "string"
+                            },
+                            "filterMode": {
+                              "enum": [
+                                "FILTER_MODE_INVALID",
+                                "FILTER_MODE_EAGER",
+                                "FILTER_MODE_LAZY"
+                              ],
+                              "type": "string"
+                            },
+                            "filterName": {
+                              "type": "string"
+                            },
+                            "filterType": {
+                              "enum": [
+                                "FILTER_TYPE_INVALID",
+                                "FILTER_TYPE_SEGMENT",
+                                "FILTER_TYPE_MULTI_SEGMENT",
+                                "FILTER_TYPE_THRESHOLD",
+                                "FILTER_TYPE_DATE_RANGE"
+                              ],
+                              "type": "string"
+                            },
+                            "filterValues": {
+                              "items": {
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "type": "array"
+                            },
+                            "operations": {
+                              "items": {
+                                "properties": {
+                                  "opType": {
+                                    "type": "string"
+                                  },
+                                  "params": {
+                                    "type": "object",
+                                    "x-kubernetes-preserve-unknown-fields": true
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "segmentValues": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "selectedDateRange": {
+                              "properties": {
+                                "durationFromNow": {
+                                  "type": "string"
+                                },
+                                "end": {
+                                  "format": "date-time",
+                                  "type": "string"
+                                },
+                                "start": {
+                                  "format": "date-time",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "selectedFilterValues": {
+                              "items": {
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "type": "array"
+                            },
+                            "selectedSegmentValues": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "useDynamicFiltering": {
+                              "type": "boolean"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "filterCollection": {
+                          "properties": {
+                            "filterLayout": {
+                              "properties": {
+                                "filterGroups": {
+                                  "items": {
+                                    "properties": {
+                                      "filterIds": {
+                                        "items": {
+                                          "type": "string"
+                                        },
+                                        "type": "array"
+                                      },
+                                      "title": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "filterIdToLayoutSpecMap": {
+                                  "additionalProperties": {
+                                    "properties": {
+                                      "size": {
+                                        "enum": [
+                                          "FILTER_SIZE_INVALID",
+                                          "FILTER_SIZE_LARGE",
+                                          "FILTER_SIZE_SMALL"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "object"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "filters": {
+                              "items": {
+                                "properties": {
+                                  "dateRange": {
+                                    "properties": {
+                                      "durationFromNow": {
+                                        "type": "string"
+                                      },
+                                      "end": {
+                                        "format": "date-time",
+                                        "type": "string"
+                                      },
+                                      "start": {
+                                        "format": "date-time",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "filterId": {
+                                    "type": "string"
+                                  },
+                                  "filterMode": {
+                                    "enum": [
+                                      "FILTER_MODE_INVALID",
+                                      "FILTER_MODE_EAGER",
+                                      "FILTER_MODE_LAZY"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "filterName": {
+                                    "type": "string"
+                                  },
+                                  "filterType": {
+                                    "enum": [
+                                      "FILTER_TYPE_INVALID",
+                                      "FILTER_TYPE_SEGMENT",
+                                      "FILTER_TYPE_MULTI_SEGMENT",
+                                      "FILTER_TYPE_THRESHOLD",
+                                      "FILTER_TYPE_DATE_RANGE"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "filterValues": {
+                                    "items": {
+                                      "format": "double",
+                                      "type": "number"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "operations": {
+                                    "items": {
+                                      "properties": {
+                                        "opType": {
+                                          "type": "string"
+                                        },
+                                        "params": {
+                                          "type": "object",
+                                          "x-kubernetes-preserve-unknown-fields": true
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "segmentValues": {
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "selectedDateRange": {
+                                    "properties": {
+                                      "durationFromNow": {
+                                        "type": "string"
+                                      },
+                                      "end": {
+                                        "format": "date-time",
+                                        "type": "string"
+                                      },
+                                      "start": {
+                                        "format": "date-time",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "selectedFilterValues": {
+                                    "items": {
+                                      "format": "double",
+                                      "type": "number"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "selectedSegmentValues": {
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "useDynamicFiltering": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "filterEnabled": {
+                          "type": "boolean"
+                        },
+                        "filterGroup": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "histogram": {
+                          "properties": {
+                            "histogramType": {
+                              "enum": [
+                                "HISTOGRAM_TYPE_INVALID",
+                                "HISTOGRAM_TYPE_NUMERICAL",
+                                "HISTOGRAM_TYPE_CATEGORICAL"
+                              ],
+                              "type": "string"
+                            },
+                            "histograms": {
+                              "items": {
+                                "properties": {
+                                  "average": {
+                                    "format": "double",
+                                    "type": "number"
+                                  },
+                                  "bucketLimits": {
+                                    "items": {
+                                      "format": "double",
+                                      "type": "number"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "bucketNames": {
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "bucketValues": {
+                                    "items": {
+                                      "format": "double",
+                                      "type": "number"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "chartName": {
+                                    "type": "string"
+                                  },
+                                  "entropy": {
+                                    "format": "double",
+                                    "type": "number"
+                                  },
+                                  "max": {
+                                    "format": "double",
+                                    "type": "number"
+                                  },
+                                  "min": {
+                                    "format": "double",
+                                    "type": "number"
+                                  },
+                                  "num": {
+                                    "format": "double",
+                                    "type": "number"
+                                  },
+                                  "stdDev": {
+                                    "format": "double",
+                                    "type": "number"
+                                  },
+                                  "sum": {
+                                    "format": "double",
+                                    "type": "number"
+                                  },
+                                  "sumSquared": {
+                                    "format": "double",
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "metadata": {
+                              "properties": {
+                                "operations": {
+                                  "items": {
+                                    "properties": {
+                                      "opType": {
+                                        "type": "string"
+                                      },
+                                      "params": {
+                                        "type": "object",
+                                        "x-kubernetes-preserve-unknown-fields": true
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "xAxis": {
+                              "type": "string"
+                            },
+                            "yAxis": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "image": {
+                          "properties": {
+                            "description": {
+                              "type": "string"
+                            },
+                            "imgSrc": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "jsonBlock": {
+                          "properties": {
+                            "data": {
+                              "type": "object",
+                              "x-kubernetes-preserve-unknown-fields": true
+                            },
+                            "filterValue": {
+                              "items": {
+                                "properties": {
+                                  "metadata": {
+                                    "properties": {
+                                      "additionalValues": {
+                                        "items": {
+                                          "properties": {
+                                            "number": {
+                                              "format": "double",
+                                              "type": "number"
+                                            },
+                                            "strValue": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      },
+                                      "operations": {
+                                        "items": {
+                                          "properties": {
+                                            "opType": {
+                                              "type": "string"
+                                            },
+                                            "params": {
+                                              "type": "object",
+                                              "x-kubernetes-preserve-unknown-fields": true
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "number": {
+                                    "format": "double",
+                                    "type": "number"
+                                  },
+                                  "strValue": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "lineChart": {
+                          "properties": {
+                            "annotations": {
+                              "items": {
+                                "properties": {
+                                  "annotation": {
+                                    "type": "string"
+                                  },
+                                  "lineStyles": {
+                                    "items": {
+                                      "properties": {
+                                        "style": {
+                                          "enum": [
+                                            "LINE_STYLE_TYPE_INVALID",
+                                            "LINE_STYLE_TYPE_SOLID",
+                                            "LINE_STYLE_TYPE_DOTTED"
+                                          ],
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "lines": {
+                                    "items": {
+                                      "properties": {
+                                        "filterValue": {
+                                          "items": {
+                                            "properties": {
+                                              "metadata": {
+                                                "properties": {
+                                                  "additionalValues": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "number": {
+                                                          "format": "double",
+                                                          "type": "number"
+                                                        },
+                                                        "strValue": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  },
+                                                  "operations": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "opType": {
+                                                          "type": "string"
+                                                        },
+                                                        "params": {
+                                                          "type": "object",
+                                                          "x-kubernetes-preserve-unknown-fields": true
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "number": {
+                                                "format": "double",
+                                                "type": "number"
+                                              },
+                                              "strValue": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "lineName": {
+                                          "type": "string"
+                                        },
+                                        "points": {
+                                          "items": {
+                                            "properties": {
+                                              "filterValue": {
+                                                "properties": {
+                                                  "metadata": {
+                                                    "properties": {
+                                                      "additionalValues": {
+                                                        "items": {
+                                                          "properties": {
+                                                            "number": {
+                                                              "format": "double",
+                                                              "type": "number"
+                                                            },
+                                                            "strValue": {
+                                                              "type": "string"
+                                                            }
+                                                          },
+                                                          "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                      },
+                                                      "operations": {
+                                                        "items": {
+                                                          "properties": {
+                                                            "opType": {
+                                                              "type": "string"
+                                                            },
+                                                            "params": {
+                                                              "type": "object",
+                                                              "x-kubernetes-preserve-unknown-fields": true
+                                                            }
+                                                          },
+                                                          "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "pointLabel": {
+                                                "type": "string"
+                                              },
+                                              "pointMetadata": {
+                                                "additionalProperties": {
+                                                  "type": "string"
+                                                },
+                                                "type": "object"
+                                              },
+                                              "x": {
+                                                "format": "double",
+                                                "type": "number"
+                                              },
+                                              "y": {
+                                                "format": "double",
+                                                "type": "number"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "x": {
+                                    "format": "double",
+                                    "type": "number"
+                                  },
+                                  "y": {
+                                    "format": "double",
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "lines": {
+                              "items": {
+                                "properties": {
+                                  "filterValue": {
+                                    "items": {
+                                      "properties": {
+                                        "metadata": {
+                                          "properties": {
+                                            "additionalValues": {
+                                              "items": {
+                                                "properties": {
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "operations": {
+                                              "items": {
+                                                "properties": {
+                                                  "opType": {
+                                                    "type": "string"
+                                                  },
+                                                  "params": {
+                                                    "type": "object",
+                                                    "x-kubernetes-preserve-unknown-fields": true
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "number": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "strValue": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "lineName": {
+                                    "type": "string"
+                                  },
+                                  "points": {
+                                    "items": {
+                                      "properties": {
+                                        "filterValue": {
+                                          "properties": {
+                                            "metadata": {
+                                              "properties": {
+                                                "additionalValues": {
+                                                  "items": {
+                                                    "properties": {
+                                                      "number": {
+                                                        "format": "double",
+                                                        "type": "number"
+                                                      },
+                                                      "strValue": {
+                                                        "type": "string"
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "type": "array"
+                                                },
+                                                "operations": {
+                                                  "items": {
+                                                    "properties": {
+                                                      "opType": {
+                                                        "type": "string"
+                                                      },
+                                                      "params": {
+                                                        "type": "object",
+                                                        "x-kubernetes-preserve-unknown-fields": true
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "type": "array"
+                                                }
+                                              },
+                                              "type": "object"
+                                            },
+                                            "number": {
+                                              "format": "double",
+                                              "type": "number"
+                                            },
+                                            "strValue": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "pointLabel": {
+                                          "type": "string"
+                                        },
+                                        "pointMetadata": {
+                                          "additionalProperties": {
+                                            "type": "string"
+                                          },
+                                          "type": "object"
+                                        },
+                                        "x": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "y": {
+                                          "format": "double",
+                                          "type": "number"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "xAxis": {
+                              "type": "string"
+                            },
+                            "yAxis": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "multiclassConfusionMatrix": {
+                          "properties": {
+                            "classNames": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "rows": {
+                              "items": {
+                                "properties": {
+                                  "filterValue": {
+                                    "items": {
+                                      "properties": {
+                                        "metadata": {
+                                          "properties": {
+                                            "additionalValues": {
+                                              "items": {
+                                                "properties": {
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "operations": {
+                                              "items": {
+                                                "properties": {
+                                                  "opType": {
+                                                    "type": "string"
+                                                  },
+                                                  "params": {
+                                                    "type": "object",
+                                                    "x-kubernetes-preserve-unknown-fields": true
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "number": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "strValue": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "values": {
+                                    "items": {
+                                      "properties": {
+                                        "metadata": {
+                                          "properties": {
+                                            "additionalValues": {
+                                              "items": {
+                                                "properties": {
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "operations": {
+                                              "items": {
+                                                "properties": {
+                                                  "opType": {
+                                                    "type": "string"
+                                                  },
+                                                  "params": {
+                                                    "type": "object",
+                                                    "x-kubernetes-preserve-unknown-fields": true
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "number": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "strValue": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "pointChart": {
+                          "properties": {
+                            "pointSets": {
+                              "items": {
+                                "properties": {
+                                  "filterValue": {
+                                    "items": {
+                                      "properties": {
+                                        "metadata": {
+                                          "properties": {
+                                            "additionalValues": {
+                                              "items": {
+                                                "properties": {
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "operations": {
+                                              "items": {
+                                                "properties": {
+                                                  "opType": {
+                                                    "type": "string"
+                                                  },
+                                                  "params": {
+                                                    "type": "object",
+                                                    "x-kubernetes-preserve-unknown-fields": true
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "number": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "strValue": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "lineName": {
+                                    "type": "string"
+                                  },
+                                  "points": {
+                                    "items": {
+                                      "properties": {
+                                        "filterValue": {
+                                          "properties": {
+                                            "metadata": {
+                                              "properties": {
+                                                "additionalValues": {
+                                                  "items": {
+                                                    "properties": {
+                                                      "number": {
+                                                        "format": "double",
+                                                        "type": "number"
+                                                      },
+                                                      "strValue": {
+                                                        "type": "string"
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "type": "array"
+                                                },
+                                                "operations": {
+                                                  "items": {
+                                                    "properties": {
+                                                      "opType": {
+                                                        "type": "string"
+                                                      },
+                                                      "params": {
+                                                        "type": "object",
+                                                        "x-kubernetes-preserve-unknown-fields": true
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "type": "array"
+                                                }
+                                              },
+                                              "type": "object"
+                                            },
+                                            "number": {
+                                              "format": "double",
+                                              "type": "number"
+                                            },
+                                            "strValue": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "pointLabel": {
+                                          "type": "string"
+                                        },
+                                        "pointMetadata": {
+                                          "additionalProperties": {
+                                            "type": "string"
+                                          },
+                                          "type": "object"
+                                        },
+                                        "x": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "y": {
+                                          "format": "double",
+                                          "type": "number"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "xAxis": {
+                              "type": "string"
+                            },
+                            "yAxis": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "richText": {
+                          "properties": {
+                            "text": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "scalar": {
+                          "properties": {
+                            "cellValue": {
+                              "properties": {
+                                "metadata": {
+                                  "properties": {
+                                    "additionalValues": {
+                                      "items": {
+                                        "properties": {
+                                          "number": {
+                                            "format": "double",
+                                            "type": "number"
+                                          },
+                                          "strValue": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "operations": {
+                                      "items": {
+                                        "properties": {
+                                          "opType": {
+                                            "type": "string"
+                                          },
+                                          "params": {
+                                            "type": "object",
+                                            "x-kubernetes-preserve-unknown-fields": true
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "type": "array"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "number": {
+                                  "format": "double",
+                                  "type": "number"
+                                },
+                                "strValue": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "scalarName": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "sectionId": {
+                          "type": "string"
+                        },
+                        "table": {
+                          "properties": {
+                            "columnNames": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "groupBy": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "metadata": {
+                              "properties": {
+                                "operations": {
+                                  "items": {
+                                    "properties": {
+                                      "opType": {
+                                        "type": "string"
+                                      },
+                                      "params": {
+                                        "type": "object",
+                                        "x-kubernetes-preserve-unknown-fields": true
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "rows": {
+                              "items": {
+                                "properties": {
+                                  "filterValue": {
+                                    "items": {
+                                      "properties": {
+                                        "metadata": {
+                                          "properties": {
+                                            "additionalValues": {
+                                              "items": {
+                                                "properties": {
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "operations": {
+                                              "items": {
+                                                "properties": {
+                                                  "opType": {
+                                                    "type": "string"
+                                                  },
+                                                  "params": {
+                                                    "type": "object",
+                                                    "x-kubernetes-preserve-unknown-fields": true
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "number": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "strValue": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "values": {
+                                    "items": {
+                                      "properties": {
+                                        "metadata": {
+                                          "properties": {
+                                            "additionalValues": {
+                                              "items": {
+                                                "properties": {
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "operations": {
+                                              "items": {
+                                                "properties": {
+                                                  "opType": {
+                                                    "type": "string"
+                                                  },
+                                                  "params": {
+                                                    "type": "object",
+                                                    "x-kubernetes-preserve-unknown-fields": true
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "number": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "strValue": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "tableCollection": {
+                          "properties": {
+                            "tables": {
+                              "items": {
+                                "properties": {
+                                  "columnNames": {
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "groupBy": {
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "metadata": {
+                                    "properties": {
+                                      "operations": {
+                                        "items": {
+                                          "properties": {
+                                            "opType": {
+                                              "type": "string"
+                                            },
+                                            "params": {
+                                              "type": "object",
+                                              "x-kubernetes-preserve-unknown-fields": true
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "rows": {
+                                    "items": {
+                                      "properties": {
+                                        "filterValue": {
+                                          "items": {
+                                            "properties": {
+                                              "metadata": {
+                                                "properties": {
+                                                  "additionalValues": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "number": {
+                                                          "format": "double",
+                                                          "type": "number"
+                                                        },
+                                                        "strValue": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  },
+                                                  "operations": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "opType": {
+                                                          "type": "string"
+                                                        },
+                                                        "params": {
+                                                          "type": "object",
+                                                          "x-kubernetes-preserve-unknown-fields": true
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "number": {
+                                                "format": "double",
+                                                "type": "number"
+                                              },
+                                              "strValue": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "values": {
+                                          "items": {
+                                            "properties": {
+                                              "metadata": {
+                                                "properties": {
+                                                  "additionalValues": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "number": {
+                                                          "format": "double",
+                                                          "type": "number"
+                                                        },
+                                                        "strValue": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  },
+                                                  "operations": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "opType": {
+                                                          "type": "string"
+                                                        },
+                                                        "params": {
+                                                          "type": "object",
+                                                          "x-kubernetes-preserve-unknown-fields": true
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "number": {
+                                                "format": "double",
+                                                "type": "number"
+                                              },
+                                              "strValue": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeSeries": {
+                          "properties": {
+                            "annotations": {
+                              "items": {
+                                "properties": {
+                                  "annotation": {
+                                    "type": "string"
+                                  },
+                                  "lineStyles": {
+                                    "items": {
+                                      "properties": {
+                                        "style": {
+                                          "enum": [
+                                            "LINE_STYLE_TYPE_INVALID",
+                                            "LINE_STYLE_TYPE_SOLID",
+                                            "LINE_STYLE_TYPE_DOTTED"
+                                          ],
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "lines": {
+                                    "items": {
+                                      "properties": {
+                                        "filterValue": {
+                                          "items": {
+                                            "properties": {
+                                              "metadata": {
+                                                "properties": {
+                                                  "additionalValues": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "number": {
+                                                          "format": "double",
+                                                          "type": "number"
+                                                        },
+                                                        "strValue": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  },
+                                                  "operations": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "opType": {
+                                                          "type": "string"
+                                                        },
+                                                        "params": {
+                                                          "type": "object",
+                                                          "x-kubernetes-preserve-unknown-fields": true
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "number": {
+                                                "format": "double",
+                                                "type": "number"
+                                              },
+                                              "strValue": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "lineName": {
+                                          "type": "string"
+                                        },
+                                        "points": {
+                                          "items": {
+                                            "properties": {
+                                              "filterValue": {
+                                                "properties": {
+                                                  "metadata": {
+                                                    "properties": {
+                                                      "additionalValues": {
+                                                        "items": {
+                                                          "properties": {
+                                                            "number": {
+                                                              "format": "double",
+                                                              "type": "number"
+                                                            },
+                                                            "strValue": {
+                                                              "type": "string"
+                                                            }
+                                                          },
+                                                          "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                      },
+                                                      "operations": {
+                                                        "items": {
+                                                          "properties": {
+                                                            "opType": {
+                                                              "type": "string"
+                                                            },
+                                                            "params": {
+                                                              "type": "object",
+                                                              "x-kubernetes-preserve-unknown-fields": true
+                                                            }
+                                                          },
+                                                          "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "pointLabel": {
+                                                "type": "string"
+                                              },
+                                              "pointMetadata": {
+                                                "additionalProperties": {
+                                                  "type": "string"
+                                                },
+                                                "type": "object"
+                                              },
+                                              "x": {
+                                                "format": "double",
+                                                "type": "number"
+                                              },
+                                              "y": {
+                                                "format": "double",
+                                                "type": "number"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "x": {
+                                    "format": "double",
+                                    "type": "number"
+                                  },
+                                  "y": {
+                                    "format": "double",
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "lines": {
+                              "items": {
+                                "properties": {
+                                  "filterValue": {
+                                    "items": {
+                                      "properties": {
+                                        "metadata": {
+                                          "properties": {
+                                            "additionalValues": {
+                                              "items": {
+                                                "properties": {
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "operations": {
+                                              "items": {
+                                                "properties": {
+                                                  "opType": {
+                                                    "type": "string"
+                                                  },
+                                                  "params": {
+                                                    "type": "object",
+                                                    "x-kubernetes-preserve-unknown-fields": true
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "number": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "strValue": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "lineName": {
+                                    "type": "string"
+                                  },
+                                  "points": {
+                                    "items": {
+                                      "properties": {
+                                        "filterValue": {
+                                          "properties": {
+                                            "metadata": {
+                                              "properties": {
+                                                "additionalValues": {
+                                                  "items": {
+                                                    "properties": {
+                                                      "number": {
+                                                        "format": "double",
+                                                        "type": "number"
+                                                      },
+                                                      "strValue": {
+                                                        "type": "string"
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "type": "array"
+                                                },
+                                                "operations": {
+                                                  "items": {
+                                                    "properties": {
+                                                      "opType": {
+                                                        "type": "string"
+                                                      },
+                                                      "params": {
+                                                        "type": "object",
+                                                        "x-kubernetes-preserve-unknown-fields": true
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "type": "array"
+                                                }
+                                              },
+                                              "type": "object"
+                                            },
+                                            "number": {
+                                              "format": "double",
+                                              "type": "number"
+                                            },
+                                            "strValue": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "pointLabel": {
+                                          "type": "string"
+                                        },
+                                        "pointMetadata": {
+                                          "additionalProperties": {
+                                            "type": "string"
+                                          },
+                                          "type": "object"
+                                        },
+                                        "x": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "y": {
+                                          "format": "double",
+                                          "type": "number"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "metadata": {
+                              "properties": {
+                                "operations": {
+                                  "items": {
+                                    "properties": {
+                                      "opType": {
+                                        "type": "string"
+                                      },
+                                      "params": {
+                                        "type": "object",
+                                        "x-kubernetes-preserve-unknown-fields": true
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "xAxis": {
+                              "type": "string"
+                            },
+                            "yAxis": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeSeriesCollection": {
+                          "properties": {
+                            "timeSeries": {
+                              "items": {
+                                "properties": {
+                                  "annotations": {
+                                    "items": {
+                                      "properties": {
+                                        "annotation": {
+                                          "type": "string"
+                                        },
+                                        "lineStyles": {
+                                          "items": {
+                                            "properties": {
+                                              "style": {
+                                                "enum": [
+                                                  "LINE_STYLE_TYPE_INVALID",
+                                                  "LINE_STYLE_TYPE_SOLID",
+                                                  "LINE_STYLE_TYPE_DOTTED"
+                                                ],
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "lines": {
+                                          "items": {
+                                            "properties": {
+                                              "filterValue": {
+                                                "items": {
+                                                  "properties": {
+                                                    "metadata": {
+                                                      "properties": {
+                                                        "additionalValues": {
+                                                          "items": {
+                                                            "properties": {
+                                                              "number": {
+                                                                "format": "double",
+                                                                "type": "number"
+                                                              },
+                                                              "strValue": {
+                                                                "type": "string"
+                                                              }
+                                                            },
+                                                            "type": "object"
+                                                          },
+                                                          "type": "array"
+                                                        },
+                                                        "operations": {
+                                                          "items": {
+                                                            "properties": {
+                                                              "opType": {
+                                                                "type": "string"
+                                                              },
+                                                              "params": {
+                                                                "type": "object",
+                                                                "x-kubernetes-preserve-unknown-fields": true
+                                                              }
+                                                            },
+                                                            "type": "object"
+                                                          },
+                                                          "type": "array"
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "number": {
+                                                      "format": "double",
+                                                      "type": "number"
+                                                    },
+                                                    "strValue": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "type": "object"
+                                                },
+                                                "type": "array"
+                                              },
+                                              "lineName": {
+                                                "type": "string"
+                                              },
+                                              "points": {
+                                                "items": {
+                                                  "properties": {
+                                                    "filterValue": {
+                                                      "properties": {
+                                                        "metadata": {
+                                                          "properties": {
+                                                            "additionalValues": {
+                                                              "items": {
+                                                                "properties": {
+                                                                  "number": {
+                                                                    "format": "double",
+                                                                    "type": "number"
+                                                                  },
+                                                                  "strValue": {
+                                                                    "type": "string"
+                                                                  }
+                                                                },
+                                                                "type": "object"
+                                                              },
+                                                              "type": "array"
+                                                            },
+                                                            "operations": {
+                                                              "items": {
+                                                                "properties": {
+                                                                  "opType": {
+                                                                    "type": "string"
+                                                                  },
+                                                                  "params": {
+                                                                    "type": "object",
+                                                                    "x-kubernetes-preserve-unknown-fields": true
+                                                                  }
+                                                                },
+                                                                "type": "object"
+                                                              },
+                                                              "type": "array"
+                                                            }
+                                                          },
+                                                          "type": "object"
+                                                        },
+                                                        "number": {
+                                                          "format": "double",
+                                                          "type": "number"
+                                                        },
+                                                        "strValue": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "pointLabel": {
+                                                      "type": "string"
+                                                    },
+                                                    "pointMetadata": {
+                                                      "additionalProperties": {
+                                                        "type": "string"
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "x": {
+                                                      "format": "double",
+                                                      "type": "number"
+                                                    },
+                                                    "y": {
+                                                      "format": "double",
+                                                      "type": "number"
+                                                    }
+                                                  },
+                                                  "type": "object"
+                                                },
+                                                "type": "array"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "x": {
+                                          "format": "double",
+                                          "type": "number"
+                                        },
+                                        "y": {
+                                          "format": "double",
+                                          "type": "number"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "lines": {
+                                    "items": {
+                                      "properties": {
+                                        "filterValue": {
+                                          "items": {
+                                            "properties": {
+                                              "metadata": {
+                                                "properties": {
+                                                  "additionalValues": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "number": {
+                                                          "format": "double",
+                                                          "type": "number"
+                                                        },
+                                                        "strValue": {
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  },
+                                                  "operations": {
+                                                    "items": {
+                                                      "properties": {
+                                                        "opType": {
+                                                          "type": "string"
+                                                        },
+                                                        "params": {
+                                                          "type": "object",
+                                                          "x-kubernetes-preserve-unknown-fields": true
+                                                        }
+                                                      },
+                                                      "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "number": {
+                                                "format": "double",
+                                                "type": "number"
+                                              },
+                                              "strValue": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "lineName": {
+                                          "type": "string"
+                                        },
+                                        "points": {
+                                          "items": {
+                                            "properties": {
+                                              "filterValue": {
+                                                "properties": {
+                                                  "metadata": {
+                                                    "properties": {
+                                                      "additionalValues": {
+                                                        "items": {
+                                                          "properties": {
+                                                            "number": {
+                                                              "format": "double",
+                                                              "type": "number"
+                                                            },
+                                                            "strValue": {
+                                                              "type": "string"
+                                                            }
+                                                          },
+                                                          "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                      },
+                                                      "operations": {
+                                                        "items": {
+                                                          "properties": {
+                                                            "opType": {
+                                                              "type": "string"
+                                                            },
+                                                            "params": {
+                                                              "type": "object",
+                                                              "x-kubernetes-preserve-unknown-fields": true
+                                                            }
+                                                          },
+                                                          "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                      }
+                                                    },
+                                                    "type": "object"
+                                                  },
+                                                  "number": {
+                                                    "format": "double",
+                                                    "type": "number"
+                                                  },
+                                                  "strValue": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "type": "object"
+                                              },
+                                              "pointLabel": {
+                                                "type": "string"
+                                              },
+                                              "pointMetadata": {
+                                                "additionalProperties": {
+                                                  "type": "string"
+                                                },
+                                                "type": "object"
+                                              },
+                                              "x": {
+                                                "format": "double",
+                                                "type": "number"
+                                              },
+                                              "y": {
+                                                "format": "double",
+                                                "type": "number"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "metadata": {
+                                    "properties": {
+                                      "operations": {
+                                        "items": {
+                                          "properties": {
+                                            "opType": {
+                                              "type": "string"
+                                            },
+                                            "params": {
+                                              "type": "object",
+                                              "x-kubernetes-preserve-unknown-fields": true
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "xAxis": {
+                                    "type": "string"
+                                  },
+                                  "yAxis": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "title": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "dataPointSource": {
+                    "properties": {
+                      "properties": {
+                        "additionalProperties": {
+                          "type": "string"
+                        },
+                        "type": "object"
+                      },
+                      "queryString": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "enum": [
+                          "DATA_POINT_SOURCE_TYPE_INVALID",
+                          "DATA_POINT_SOURCE_TYPE_EMBEDDED",
+                          "DATA_POINT_SOURCE_TYPE_METRIC_STORE"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "filterLayout": {
+                    "properties": {
+                      "filterGroups": {
+                        "items": {
+                          "properties": {
+                            "filterIds": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "title": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "filterIdToLayoutSpecMap": {
+                        "additionalProperties": {
+                          "properties": {
+                            "size": {
+                              "enum": [
+                                "FILTER_SIZE_INVALID",
+                                "FILTER_SIZE_LARGE",
+                                "FILTER_SIZE_SMALL"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "filters": {
+                    "items": {
+                      "properties": {
+                        "dateRange": {
+                          "properties": {
+                            "durationFromNow": {
+                              "type": "string"
+                            },
+                            "end": {
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "start": {
+                              "format": "date-time",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "filterId": {
+                          "type": "string"
+                        },
+                        "filterMode": {
+                          "enum": [
+                            "FILTER_MODE_INVALID",
+                            "FILTER_MODE_EAGER",
+                            "FILTER_MODE_LAZY"
+                          ],
+                          "type": "string"
+                        },
+                        "filterName": {
+                          "type": "string"
+                        },
+                        "filterType": {
+                          "enum": [
+                            "FILTER_TYPE_INVALID",
+                            "FILTER_TYPE_SEGMENT",
+                            "FILTER_TYPE_MULTI_SEGMENT",
+                            "FILTER_TYPE_THRESHOLD",
+                            "FILTER_TYPE_DATE_RANGE"
+                          ],
+                          "type": "string"
+                        },
+                        "filterValues": {
+                          "items": {
+                            "format": "double",
+                            "type": "number"
+                          },
+                          "type": "array"
+                        },
+                        "operations": {
+                          "items": {
+                            "properties": {
+                              "opType": {
+                                "type": "string"
+                              },
+                              "params": {
+                                "type": "object",
+                                "x-kubernetes-preserve-unknown-fields": true
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "segmentValues": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "selectedDateRange": {
+                          "properties": {
+                            "durationFromNow": {
+                              "type": "string"
+                            },
+                            "end": {
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "start": {
+                              "format": "date-time",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "selectedFilterValues": {
+                          "items": {
+                            "format": "double",
+                            "type": "number"
+                          },
+                          "type": "array"
+                        },
+                        "selectedSegmentValues": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "useDynamicFiltering": {
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "sealed": {
+                    "type": "boolean"
+                  },
+                  "sourcePipeline": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "sourcePipelineRun": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "title": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "status": {
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "served": true,
+        "storage": true,
+        "subresources": {
+          "status": {}
+        }
+      }
+    ]
+  }
+}
